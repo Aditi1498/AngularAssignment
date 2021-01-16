@@ -1,0 +1,52 @@
+
+<div class="table-container" *ngIf = "users.length > 0; else empty">
+    <table class="table is-fullwidth">
+        <thead>
+        <th class="is-success">
+            Name
+        </th>
+        <th class="is-success">
+            UserName
+        </th>
+        <th class="is-success">
+            Email
+        </th>
+        <th class="is-success">
+
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users; index as i" (click)="selectUser(user,i)">
+            <td>
+                {{user.name}}
+            </td>
+            <td>
+                {{user.username}}
+            </td>
+            
+            <td appHighlighter  >
+                
+                    {{user.email}}
+                
+            </td>
+        
+            <td>
+                <button class="button is-danger" (click)="handleDelete(i)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+  </div>
+
+
+  <ng-template #empty>
+    <div class="message is-danger ">
+        <div class="message-body">
+        <h1>No Users Available</h1>
+    </div>
+    </div>
+</ng-template>
+
+<h3 class="is-light">
+    <app-forms (user)="OnUserSubmit($event)" [selectedUser] = "selectedUser" [index] = "index"></app-forms>
+</h3>
